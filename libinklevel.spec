@@ -62,6 +62,7 @@ the "%{libname}" library.
 %prep
 %setup -q
 %patch0 -p0
+sed -i -e 's|$(DESTDIR)/lib|$(DESTDIR)/%{_lib}|' Makefile
 
 ##### BUILD #####
 
