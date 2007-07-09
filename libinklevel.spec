@@ -2,11 +2,12 @@
 
 %define libname %mklibname inklevel 4
 %define develname %mklibname -d inklevel
+%define old_libname %mklibname inklevel 2
 
 Summary:	Library to determine the ink levels of HP and Epson inkjets
 Name:		libinklevel
 Version:	0.7.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPL
 Group:		Publishing
 Url:		http://libinklevel.sourceforge.net/
@@ -18,7 +19,6 @@ Patch0: libinklevel-0.7.1-Makefile.patch
 
 ##### ADDITIONAL DEFINITIONS #####
 
-Provides:	libinklevel
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	libieee1284-devel
 
@@ -36,6 +36,7 @@ Most current HP inkjets and several Epson inkjets are supported.
 Summary:	Library to determine the ink levels of HP and Epson inkjets
 Provides:	libinklevel
 Group:		Publishing
+Obsoletes:	%old_libname
 
 %description -n %libname
 
@@ -50,6 +51,7 @@ Summary: 	Headers and links to compile against the "%{libname}" library
 Requires: 	%{libname} = %{version}
 Provides:	libinklevel-devel = %{version}-%{release}
 Obsoletes:	%{libname}-devel
+Obsoletes:	%{old_libname}-devel
 Group:		Development/C
 
 %description -n %{develname}
