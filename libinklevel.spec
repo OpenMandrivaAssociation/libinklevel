@@ -1,18 +1,20 @@
 ##### GENERAL STUFF #####
 
-%define libname %mklibname inklevel 2
+%define libname %mklibname inklevel 4
+%define develname %mklibname -d inklevel
 
 Summary:	Library to determine the ink levels of HP and Epson inkjets
 Name:		libinklevel
-Version:	0.6.5
-Release:	%mkrel 0.1
+Version:	0.7.1
+Release:	%mkrel 1
 License:	GPL
 Group:		Publishing
 Url:		http://libinklevel.sourceforge.net/
 
 ##### SOURCE FILES #####
 
-Source: http://heanet.dl.sourceforge.net/sourceforge/libinklevel/libinklevel-%{version}rc2.tar.bz2
+Source: http://heanet.dl.sourceforge.net/sourceforge/libinklevel/libinklevel-%{version}.tar.gz
+Patch0: libinklevel-0.7.1-Makefile.patch
 
 ##### ADDITIONAL DEFINITIONS #####
 
@@ -43,13 +45,14 @@ port or usb.
 
 Most current HP inkjets and several Epson inkjets are supported.
 
-%package -n %{libname}-devel
+%package -n %{develname}
 Summary: 	Headers and links to compile against the "%{libname}" library
 Requires: 	%{libname} = %{version}
-Provides:	libinklevel-devel
+Provides:	libinklevel-devel = %{version}-%{release}
+Obsoletes:	%{libname}-devel
 Group:		Development/C
 
-%description -n %{libname}-devel
+%description -n %{develname}
 This package contains all files which one needs to compile programs using
 the "%{libname}" library.
 
@@ -57,8 +60,8 @@ the "%{libname}" library.
 ##### PREP #####
 
 %prep
-rm -rf $RPM_BUILD_DIR/libinklevel
-%setup -q -n libinklevel
+%setup -q
+%patch0 -p0
 
 ##### BUILD #####
 
@@ -70,11 +73,7 @@ rm -rf $RPM_BUILD_DIR/libinklevel
 %install
 rm -rf $RPM_BUILD_ROOT
 
-# Remove explicit setting of ownerships from the Makefile
-perl -p -i -e 's/-o root -g root//' Makefile
-# Remove calls of ldconfig from the Makefile
-perl -p -i -e 's/ldconfig/:/' Makefile
-%makeinstall DESTDIR=%{buildroot}/usr
+make install DESTDIR=$RPM_BUILD_ROOT%{_prefix}
 
 ##### PRE/POST INSTALL SCRIPTS #####
 
@@ -95,7 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.so.*
 
 ##### libinklevel-devel
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/*.so
 %{_includedir}/*
