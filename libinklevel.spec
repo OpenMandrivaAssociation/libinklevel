@@ -19,7 +19,6 @@ Patch0: libinklevel-0.7.1-Makefile.patch
 
 ##### ADDITIONAL DEFINITIONS #####
 
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	libieee1284-devel
 
 ##### SUB-PACKAGES #####
