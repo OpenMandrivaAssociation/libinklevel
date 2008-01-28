@@ -15,7 +15,7 @@ Url:		http://libinklevel.sourceforge.net/
 ##### SOURCE FILES #####
 
 Source: http://heanet.dl.sourceforge.net/sourceforge/libinklevel/libinklevel-%{version}.tar.bz2
-Patch0: libinklevel-0.7.1-Makefile.patch
+Patch0: libinklevel-0.7.2-Makefile.patch
 
 ##### ADDITIONAL DEFINITIONS #####
 
@@ -69,14 +69,14 @@ sed -i -e 's|$(DESTDIR)/lib|$(DESTDIR)/%{_lib}|' Makefile
 ##### BUILD #####
 
 %build
-%make
+%make CFLAGS="%{optflags}" 
 
 ##### INSTALL #####
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install DESTDIR=$RPM_BUILD_ROOT%{_prefix}
+make install DESTDIR=$RPM_BUILD_ROOT PREFIX=%{_prefix}
 
 ##### PRE/POST INSTALL SCRIPTS #####
 
