@@ -25,7 +25,6 @@ BuildRequires:	libieee1284-devel
 ##### SUB-PACKAGES #####
 
 %description
-
 libinklevel is a library for checking the ink level of your printer on
 a system which runs Linux. It supports printers attached via parallel
 port or usb.
