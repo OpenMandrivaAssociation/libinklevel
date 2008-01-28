@@ -64,12 +64,12 @@ the "%{libname}" library.
 %prep
 %setup -q
 %patch0 -p0
-sed -i -e 's|$(DESTDIR)/lib|$(DESTDIR)/%{_lib}|' Makefile
+sed -i -e 's|$(PREFIX)/lib|$(PREFIX)/%{_lib}|' Makefile
 
 ##### BUILD #####
 
 %build
-%make CFLAGS="%{optflags}" 
+%make CFLAGS="%{optflags} -fPIC"
 
 ##### INSTALL #####
 
