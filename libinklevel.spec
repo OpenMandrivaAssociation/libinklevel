@@ -6,16 +6,15 @@
 
 Summary:	Library to determine the ink levels of HP and Epson inkjets
 Name:		libinklevel
-Version:	0.7.2
+Version:	0.7.3
 Release:	%mkrel 1
-License:	GPL
+License:	GPLv2
 Group:		Publishing
 Url:		http://libinklevel.sourceforge.net/
 
 ##### SOURCE FILES #####
 
-Source: http://heanet.dl.sourceforge.net/sourceforge/libinklevel/libinklevel-%{version}.tar.bz2
-Patch0: libinklevel-0.7.2-Makefile.patch
+Source: http://heanet.dl.sourceforge.net/sourceforge/libinklevel/libinklevel-%{version}.tar.gz
 
 ##### ADDITIONAL DEFINITIONS #####
 
@@ -61,7 +60,6 @@ the "%{libname}" library.
 
 %prep
 %setup -q
-%patch0 -p0
 sed -i -e 's|$(PREFIX)/lib|$(PREFIX)/%{_lib}|' Makefile
 
 ##### BUILD #####
@@ -91,7 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 ##### libinklevel
 %files -n %libname
 %defattr(-,root,root)
-%doc COPYING README
+%doc CHANGELOG AUTHORS
 %{_libdir}/*.so.*
 
 ##### libinklevel-devel
