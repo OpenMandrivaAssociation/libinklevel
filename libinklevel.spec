@@ -21,6 +21,7 @@ Source: http://heanet.dl.sourceforge.net/sourceforge/libinklevel/libinklevel-%{v
 
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	libieee1284-devel
+BuildRequires:	makedepend
 
 ##### SUB-PACKAGES #####
 
