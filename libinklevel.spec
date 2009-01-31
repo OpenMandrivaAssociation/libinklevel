@@ -1,20 +1,21 @@
 ##### GENERAL STUFF #####
-
-%define libname %mklibname inklevel 4
+%define major 5
+%define libname %mklibname inklevel %major
 %define develname %mklibname -d inklevel
 %define old_libname %mklibname inklevel 2
+%define beta rc1
 
 Summary:	Library to determine the ink levels of HP and Epson inkjets
 Name:		libinklevel
-Version:	0.7.3
-Release:	%mkrel 2
+Version:	0.8.0
+Release:	%mkrel -c %beta 1
 License:	GPLv2
 Group:		Publishing
 Url:		http://libinklevel.sourceforge.net/
 
 ##### SOURCE FILES #####
 
-Source: http://heanet.dl.sourceforge.net/sourceforge/libinklevel/libinklevel-%{version}.tar.gz
+Source: http://heanet.dl.sourceforge.net/sourceforge/libinklevel/libinklevel-%{version}%{beta}.tar.gz
 
 ##### ADDITIONAL DEFINITIONS #####
 
@@ -59,8 +60,7 @@ the "%{libname}" library.
 ##### PREP #####
 
 %prep
-%setup -q
-sed -i -e 's|$(PREFIX)/lib|$(PREFIX)/%{_lib}|' Makefile
+%setup -q -n %name-%{version}%{beta}
 
 ##### BUILD #####
 
@@ -71,8 +71,7 @@ sed -i -e 's|$(PREFIX)/lib|$(PREFIX)/%{_lib}|' Makefile
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-make install DESTDIR=$RPM_BUILD_ROOT PREFIX=%{_prefix}
+%makeinstall_std PREFIX=%{_prefix} LIB=%{_lib}
 
 ##### PRE/POST INSTALL SCRIPTS #####
 
@@ -94,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n %libname
 %defattr(-,root,root)
 %doc CHANGELOG AUTHORS
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}*
 
 ##### libinklevel-devel
 %files -n %{develname}
