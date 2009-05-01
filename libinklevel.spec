@@ -3,7 +3,7 @@
 %define libname %mklibname inklevel %major
 %define develname %mklibname -d inklevel
 %define old_libname %mklibname inklevel 2
-%define beta rc1
+%define beta rc2
 
 Summary:	Library to determine the ink levels of HP and Epson inkjets
 Name:		libinklevel
@@ -66,13 +66,17 @@ the "%{libname}" library.
 ##### BUILD #####
 
 %build
+%configure2_5x
 %make CFLAGS="%{optflags} -fPIC"
 
 ##### INSTALL #####
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%makeinstall_std PREFIX=%{_prefix} LIB=%{_lib}
+rm -rf %{buildroot}
+%makeinstall_std 
+rm -f %{buildroot}%{_libdir}/*.la
+rm -f %{buildroot}%{_libdir}/*.a
+rm -rf %{buildroot}%{_docdir}
 
 ##### PRE/POST INSTALL SCRIPTS #####
 
@@ -85,7 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 
 ##### FILE LISTS FOR ALL BINARY PACKAGES #####
@@ -93,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 ##### libinklevel
 %files -n %libname
 %defattr(-,root,root)
-%doc CHANGELOG AUTHORS
+%doc ChangeLog NEWS AUTHORS
 %{_libdir}/*.so.%{major}*
 
 ##### libinklevel-devel
