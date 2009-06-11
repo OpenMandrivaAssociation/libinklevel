@@ -3,12 +3,12 @@
 %define libname %mklibname inklevel %major
 %define develname %mklibname -d inklevel
 %define old_libname %mklibname inklevel 2
-%define beta rc2
+%define beta %nil
 
 Summary:	Library to determine the ink levels of HP and Epson inkjets
 Name:		libinklevel
 Version:	0.8.0
-Release:	%mkrel -c %beta 1
+Release:	%mkrel 1
 License:	GPLv2
 Group:		Publishing
 Url:		http://libinklevel.sourceforge.net/
