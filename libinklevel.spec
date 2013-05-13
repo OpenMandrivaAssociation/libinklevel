@@ -20,7 +20,7 @@ Source: http://heanet.dl.sourceforge.net/sourceforge/libinklevel/libinklevel-%{v
 ##### ADDITIONAL DEFINITIONS #####
 
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-BuildRequires:	libieee1284-devel
+BuildRequires:	ieee1284-devel
 BuildRequires:	makedepend
 
 ##### SUB-PACKAGES #####
