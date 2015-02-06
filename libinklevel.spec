@@ -8,7 +8,7 @@
 Summary:	Library to determine the ink levels of HP and Epson inkjets
 Name:		libinklevel
 Version:	0.8.0
-Release:	3
+Release:	4
 License:	GPLv2
 Group:		Publishing
 Url:		http://libinklevel.sourceforge.net/
