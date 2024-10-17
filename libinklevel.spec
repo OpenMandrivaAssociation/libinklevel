@@ -11,7 +11,7 @@ Version:	0.8.0
 Release:	4
 License:	GPLv2
 Group:		Publishing
-Url:		http://libinklevel.sourceforge.net/
+Url:		https://libinklevel.sourceforge.net/
 
 ##### SOURCE FILES #####
 
