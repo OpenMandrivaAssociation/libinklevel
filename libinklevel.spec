@@ -19,6 +19,10 @@ Source: http://heanet.dl.sourceforge.net/sourceforge/libinklevel/libinklevel-%{v
 
 ##### ADDITIONAL DEFINITIONS #####
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
 BuildRequires:	ieee1284-devel
 BuildRequires:	makedepend
 
